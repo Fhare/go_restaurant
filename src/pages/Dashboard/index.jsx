@@ -8,7 +8,7 @@ import { ModalEditFood } from '../../components/ModalEditFood';
 
 import { FoodsContainer } from './styles';
 
-export function Dashboard(props) {
+export function Dashboard() {
 
   const [foods, setFoods] = useState([]);
   const [editingFood, setEditingFood] = useState({});
@@ -74,11 +74,37 @@ export function Dashboard(props) {
     setEditModalOpen(!editModalOpen);
   };
 
+  async function handleAddFood(food) {
+    try {
+      const response = await api.post('/foods', { ...food, available: true });
+      const newFood = response.data;
+
+      setFoods([...foods, newFood]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function handleEditFood(food) {
-    setEditingFood({ editingFood: food, editModalOpen: true });
+    try {
+      // const foodUpdated = await api.put(`/foods/${editingFood.id}`, { ...editingFood, ...food });
+
+      // const foodsUpdated = foods.map(f =>
+      //   f.id !== foodUpdated.data.id ? f : foodUpdated.data,
+      // );
+
+      // setFoods(foodsUpdated);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  // const { modalOpen, editModalOpen, editingFood, foods } = this.state;
+  async function handleDeleteFood(id) {
+    await api.delete(`/foods/${id}`);
+    const foodsFiltered = foods.filter(food => food.id !== id);
+
+    setFoods(foodsFiltered);
+  }
 
   useEffect(() => {
     getFoods();
@@ -91,7 +117,7 @@ export function Dashboard(props) {
       <ModalAddFood
         isOpen={modalOpen}
         setIsOpen={toggleModal}
-      // handleAddFood={this.handleAddFood}
+        handleAddFood={handleAddFood}
       />
 
       <ModalEditFood
@@ -103,13 +129,13 @@ export function Dashboard(props) {
 
       <FoodsContainer data-testid="foods-list">
         {foods.map(food => (
-            <Food
-              key={food.id}
-              food={food}
-            // handleDelete={this.handleDeleteFood}
-            // handleEditFood={this.handleEditFood}
-            />
-          ))}
+          <Food
+            key={food.id}
+            food={food}
+            handleDelete={handleDeleteFood}
+            handleEditFood={handleEditFood}
+          />
+        ))}
       </FoodsContainer>
     </>
   );
