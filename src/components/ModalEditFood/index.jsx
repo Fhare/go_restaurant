@@ -6,18 +6,14 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
-export function ModalEditFood(props) {
-
-  const { isOpen, setIsOpen, editingFood } = props;
+export function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood }) {
 
   const formRef = useRef();
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const { setIsOpen, handleUpdateFood } = props;
-
-    // handleUpdateFood(data);
+    handleUpdateFood(event.data);
     setIsOpen();
   };
 

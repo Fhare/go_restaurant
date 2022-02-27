@@ -85,15 +85,15 @@ export function Dashboard() {
     }
   }
 
-  function handleEditFood(food) {
+  async function handleEditFood(food) {
     try {
-      // const foodUpdated = await api.put(`/foods/${editingFood.id}`, { ...editingFood, ...food });
+      const foodUpdated = await api.put(`/foods/${editingFood.id}`, { ...editingFood, ...food });
 
-      // const foodsUpdated = foods.map(f =>
-      //   f.id !== foodUpdated.data.id ? f : foodUpdated.data,
-      // );
+      const foodsUpdated = foods.map(food =>
+        food.id !== foodUpdated.data.id ? food : foodUpdated.data,
+      );
 
-      // setFoods(foodsUpdated);
+      setFoods(foodsUpdated);
     } catch (err) {
       console.log(err);
     }
@@ -109,6 +109,8 @@ export function Dashboard() {
   useEffect(() => {
     getFoods();
   }, []);
+
+  console.log(editingFood);
 
   return (
     <>
