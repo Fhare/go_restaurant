@@ -15,8 +15,6 @@ export function Dashboard() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-
-  console.log(editModalOpen);
   
   async function getFoods() {
     const response = await api.get("/foods");
@@ -45,16 +43,14 @@ export function Dashboard() {
   }
 
   async function handleEditFood(food) {
-    setEditModalOpen(!editModalOpen);
-
     try {
-      const foodUpdated = await api.put(`/foods/${food.id}`, { ...editingFood, ...food });
+      const foodUpdated = await api.put(`/foods/${editingFood.id}`, { ...editingFood, ...food });
       
       const foodsUpdated = foods.map(food =>
         food.id !== foodUpdated.data.id ? food : foodUpdated.data,
       );
 
-      // setEditingFood(foodsUpdated);
+      setEditingFood(foodsUpdated);
     } catch (err) {
       console.log(err);
     }
@@ -85,7 +81,7 @@ export function Dashboard() {
         isOpen={editModalOpen}
         setIsOpen={toggleEditModal}
         editingFood={editingFood}
-        handleUpdateFood={() => handleEditFood(foods)}
+        handleUpdateFood={handleEditFood}
       />
 
       <FoodsContainer data-testid="foods-list">
