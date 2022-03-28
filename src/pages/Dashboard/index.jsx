@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 import api from '../../services/api';
 import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
@@ -44,7 +44,7 @@ export function Dashboard() {
 
   async function handleEditFood(food) {
     try {
-      const foodUpdated = await api.put(`/foods/${editingFood.id}`, { ...editingFood, ...food });
+      const foodUpdated = await api.put(`/foods/${food.id}`, { ...editingFood, ...food });
       
       const foodsUpdated = foods.map(food =>
         food.id !== foodUpdated.data.id ? food : foodUpdated.data,

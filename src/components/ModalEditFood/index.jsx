@@ -4,6 +4,7 @@ import { FiCheckSquare } from 'react-icons/fi';
 
 import { Form } from './styles';
 import { Modal } from '../Modal';
+
 import Input from '../Input';
 
 export function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood }) {
