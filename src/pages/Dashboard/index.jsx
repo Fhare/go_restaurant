@@ -41,13 +41,16 @@ export function Dashboard() {
       console.log(err);
     }
   }
+  
+
+  console.log(editingFood);
 
   async function handleEditFood(food) {
     try {
       const foodUpdated = await api.put(`/foods/${food.id}`, { ...editingFood, ...food });
       
       const foodsUpdated = foods.map(food =>
-        food.id !== foodUpdated.data.id ? food : foodUpdated.data,
+        food.id !== foodUpdated.data.id ? food : foodUpdated.data
       );
 
       setEditingFood(foodsUpdated);
@@ -91,6 +94,7 @@ export function Dashboard() {
             food={food}
             handleDelete={handleDeleteFood}
             handleEditFood={handleEditFood}
+            setEditingModalOpen={toggleEditModal}
           />
         ))}
       </FoodsContainer>

@@ -1,31 +1,15 @@
 {
   "foods": [
     {
-      "0": {
-        "0": {
-          "0": {
-            "id": 0,
-            "name": "Veggie",
-            "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
-            "price": "21.90",
-            "available": false,
-            "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png"
-          },
-          "id": 0,
-          "name": "Veggie",
-          "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
-          "price": "21.90",
-          "available": false,
-          "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png"
-        },
-        "id": 0,
-        "name": "Veggie",
-        "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
-        "price": "21.90",
-        "available": false,
-        "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png"
-      },
       "id": 0,
+      "name": "Veggie",
+      "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
+      "price": "21.90",
+      "available": false,
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png"
+    },
+    {
+      "id": 1,
       "name": "Veggie",
       "description": "Macarrão com pimentão, ervilha e ervas finas colhidas no himalaia.",
       "price": "21.90",

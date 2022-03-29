@@ -5,7 +5,7 @@ import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 import api from '../../services/api';
 
-export default function Food({ food, handleDelete, handleEditFood }) {
+export default function Food({ food, handleDelete, handleEditFood, setEditingModalOpen }) {
 
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -18,9 +18,10 @@ export default function Food({ food, handleDelete, handleEditFood }) {
     setIsAvailable(!isAvailable);
   }
 
-    function setEditingFood() {
-      handleEditFood(food);
-    }
+  function setEditingFood() {
+    handleEditFood(food);
+    setEditingModalOpen();
+  }
 
   return (
     <Container available={isAvailable}>

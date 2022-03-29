@@ -12,9 +12,9 @@ export function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood
   const formRef = useRef();
 
   async function handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
-    handleUpdateFood(event.data);
+    handleUpdateFood(event);
     setIsOpen();
   };
 
