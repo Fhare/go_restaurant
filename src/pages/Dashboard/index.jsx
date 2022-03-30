@@ -15,7 +15,7 @@ export function Dashboard() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  
+
   async function getFoods() {
     const response = await api.get("/foods");
     const data = response.data;
@@ -41,19 +41,16 @@ export function Dashboard() {
       console.log(err);
     }
   }
-  
 
-  console.log(editingFood);
-
-  async function handleEditFood(food) {
+  async function handleUpdateFood(food) {
     try {
-      const foodUpdated = await api.put(`/foods/${food.id}`, { ...editingFood, ...food });
-      
-      const foodsUpdated = foods.map(food =>
-        food.id !== foodUpdated.data.id ? food : foodUpdated.data
+      const foodUpdated = await api.put(`/foods/${editingFood.id}`, { ...editingFood, ...food });
+
+      const foodsUpdated = foods.map(f =>
+        f.id !== foodUpdated.data.id ? f : foodUpdated.data,
       );
 
-      setEditingFood(foodsUpdated);
+      setFoods(foodsUpdated);
     } catch (err) {
       console.log(err);
     }
@@ -64,6 +61,11 @@ export function Dashboard() {
     const foodsFiltered = foods.filter(food => food.id !== id);
 
     setFoods(foodsFiltered);
+  }
+
+  function handleEditFood(food) {
+    setEditingFood(food);
+    setEditModalOpen(true);
   }
 
   useEffect(() => {
@@ -84,7 +86,7 @@ export function Dashboard() {
         isOpen={editModalOpen}
         setIsOpen={toggleEditModal}
         editingFood={editingFood}
-        handleUpdateFood={handleEditFood}
+        handleUpdateFood={handleUpdateFood}
       />
 
       <FoodsContainer data-testid="foods-list">
@@ -94,7 +96,6 @@ export function Dashboard() {
             food={food}
             handleDelete={handleDeleteFood}
             handleEditFood={handleEditFood}
-            setEditingModalOpen={toggleEditModal}
           />
         ))}
       </FoodsContainer>

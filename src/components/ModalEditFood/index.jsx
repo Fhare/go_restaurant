@@ -11,16 +11,14 @@ export function ModalEditFood({ isOpen, setIsOpen, editingFood, handleUpdateFood
 
   const formRef = useRef();
 
-  async function handleSubmit(event) {
-    // event.preventDefault();
-
-    handleUpdateFood(event);
+  async function handleSubmit(data) {
+    handleUpdateFood(data);
     setIsOpen();
   };
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <Form ref={formRef} onSubmit={event => handleSubmit(event)} initialData={editingFood}>
+      <Form ref={formRef} onSubmit={handleSubmit} initialData={editingFood}>
         <h1>Editar Prato</h1>
         <Input name="image" placeholder="Cole o link aqui" />
 
