@@ -6,7 +6,13 @@ import { Modal } from '../Modal';
 
 import Input from '../Input';
 
-function ModalAddFood({ isOpen, setIsOpen, handleAddFood }) {
+interface ModalAddFoodProps {
+  isOpen: boolean;
+  setIsOpen: () => void;
+  handleAddFood: () => void;
+}
+
+function ModalAddFood({ isOpen, setIsOpen, handleAddFood }: ModalAddFoodProps) {
 
   const formRef = useRef();
 
