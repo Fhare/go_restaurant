@@ -12,10 +12,11 @@ import { Container } from './styles';
 
 interface InputProps {
   name: string;
-  icon: IconType;
+  placeholder: string;
+  icon?: IconType;
 }
 
-const Input = ({ name, icon: Icon, ...rest }: InputProps) => {
+const Input = ({ name, icon: Icon, placeholder }: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -50,7 +51,7 @@ const Input = ({ name, icon: Icon, ...rest }: InputProps) => {
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef}
-        {...rest}
+        placeholder={placeholder}
       />
     </Container>
   );
